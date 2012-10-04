@@ -19,7 +19,8 @@ define unicorn::instance(
   $env = 'production',
   $uid = 'root',
   $gid = 'root',
-  $monit_extras = ''
+  $monit_extras = '',
+  $service = true
 ) {
 
   $real_command = $rails ? {
@@ -57,7 +58,7 @@ define unicorn::instance(
         customlines => [$check_socket, $check_port, $monit_extras, "group ${process_name}_unicorn"];
     }
   }
-  else {
+  elsif $service {
     service {
       "${process_name}_unicorn":
         provider  => 'base',

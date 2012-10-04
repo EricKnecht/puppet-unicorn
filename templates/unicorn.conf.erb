@@ -14,9 +14,7 @@ require <%= line %>
 # more will usually help for _short_ waits on databases/caches.
 worker_processes <%= worker_processes %>
 
-# Help ensure your application will always spawn in the symlinked
-# "current" directory that Capistrano sets up.
-working_directory "<%= basedir %>"
+working_directory "<%= basedir  %>"
 
 <% if socket_path then -%>
 # Unix domain socket
